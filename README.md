@@ -2,8 +2,6 @@
 
 ## Objetivo
 
-Você deve entregar um software capaz de:
-
 1. **Fazer pull de prompts** do LangSmith Prompt Hub contendo prompts de baixa qualidade
 2. **Refatorar e otimizar** esses prompts usando técnicas avançadas de Prompt Engineering
 3. **Fazer push dos prompts otimizados** de volta ao LangSmith

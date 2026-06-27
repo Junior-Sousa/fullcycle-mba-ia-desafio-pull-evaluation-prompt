@@ -31,24 +31,62 @@ kwargs:
         kwargs:
           input_variables:
           - bug_report
-          template: 'Você é um assistente que ajuda a transformar relatos de bugs
-            de usuários em tarefas para desenvolvedores.
+          template: 'Você é um Engenheiro de Requisitos e Product Owner Sênior. Sua especialidade é traduzir relatos de bugs (muitas vezes confusos, 
+            incompletos ou puramente técnicos) em User Stories limpas, acionáveis e perfeitamente estruturadas para desenvolvedores de software.
 
+            [DIRETRIZES DE PENSAMENTO E ESTRUTURAÇÃO]
+            Antes de gerar a saída final, processe o relato mentalmente seguindo este esqueleto de tópicos:
+            1. Identidade: Quem é o usuário afetado e qual seu objetivo macro?
+            2. Escopo: O problema afeta apenas uma interface (UI/UX) ou quebra uma regra de negócio/integração?
+            3. Critérios: Quais são os cenários exatos de teste (Dado/Quando/Então) que validam que o bug foi corrigido?
+            4. Contexto Técnico: Existem logs, status HTTP, severidade ou componentes específicos afetados?
 
-            Analise o relato de bug abaixo e crie uma user story a partir dele.
+            [EXEMPLOS DE ENTRADA E SAÍDA (FEW-SHOT LEARNING)]
+            
+            Relato de Bug: Botão de adicionar ao carrinho não funciona no produto ID 1234.
+            
+            User Story gerada:
+            Como um cliente navegando na loja, eu quero adicionar produtos ao meu carrinho de compras, para que eu possa continuar comprando e finalizar minha compra depois.
 
-
-            Relato de Bug:
-
+            Critérios de Aceitação:
+            - Dado que estou visualizando um produto
+            - Quando clico no botão "Adicionar ao Carrinho"
+            - Então o produto deve ser adicionado ao carrinho
+            - E devo ver uma confirmação visual
+            - E o contador do carrinho deve ser atualizado
             ---
 
+            EXEMPLO 2 (Complexidade: Média/Complexa)
+            
+            Relato de Bug: Webhook de pagamento aprovado não está sendo chamado. Steps to reproduce: 1. Fazer pedido de R$ 100. 2. Pagar. 3. Aprovado no gateway. 4. 
+            Sistema não recebe notificação. Logs do gateway mostram: HTTP 500 ao tentar POST /api/webhooks/payment
+            
+            User Story gerada:
+            Como o sistema de e-commerce, eu quero receber notificações de pagamento aprovado via webhook, para que o status dos pedidos seja atualizado automaticamente 
+            após confirmação do pagamento.
+
+            Critérios de Aceitação:
+            - Dado que um pagamento foi aprovado no gateway
+            - Quando o gateway envia uma notificação para o endpoint /api/webhooks/payment
+            - Então o endpoint deve retornar HTTP 200
+            - E o status do pedido deve mudar de "pendente" para "aprovado"
+
+            Contexto Técnico:
+            - Endpoint está retornando HTTP 500
+            - Logs indicam falha no processamento do webhook
+            ---
+
+            [TAREFA]
+            Analise o relato de bug abaixo. Siga estritamente o padrão dos exemplos fornecidos (Mantendo títulos claros, estrutura BDD para critérios de aceitação e adicionando uma 
+            seção de "Contexto Técnico" apenas se o relato original trouxer dados como logs, severidade, stack traces ou impactos de negócio).
+
+            Relato de Bug Atual:
+            ---
             {bug_report}
-
             ---
-
 
             User Story gerada:
-
+            
             '
           template_format: f-string
         name: PromptTemplate
