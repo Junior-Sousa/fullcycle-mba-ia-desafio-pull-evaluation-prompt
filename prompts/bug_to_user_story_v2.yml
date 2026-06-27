@@ -9,9 +9,8 @@ kwargs:
   input_variables:
   - bug_report
   metadata:
-    lc_hub_owner: leonanluppi
-    lc_hub_repo: bug_to_user_story_v1
-    lc_hub_commit_hash: 2950c33dbd7ffaed2e440b50adfd7769d183f90faf0bae5aa4864354f88e4073
+    lc_hub_owner: juniorsousa
+    lc_hub_repo: bug_to_user_story_v2
   messages:
   - lc: 1
     type: constructor
