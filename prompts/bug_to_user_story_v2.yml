@@ -76,6 +76,12 @@ kwargs:
             - Logs indicam falha no processamento do webhook
             ---
 
+            [DIRETRIZES DE ESCOPO E PROPORCIONALIDADE]
+            - O nível de detalhe da User Story deve ser DIRETAMENTE proporcional à complexidade do relato do bug. 
+            - Para bugs SIMPLES (ex: apenas uma linha de reclamação visual): gere critérios de aceitação focados estritamente na correção daquela tela, sem estender o escopo.
+            - Para bugs COMPLEXOS (que contêm passos para reproduzir, logs ou stack traces): inclua obrigatoriamente a seção "Contexto Técnico" e mapeie múltiplos cenários de critérios de aceitação para cobrir todas as falhas relatadas.
+            - Ancore-se estritamente nos fatos fornecidos no relato, mas seja COMPLETO ao traduzir todas as dores descritas em critérios de aceitação funcionais.
+
             [TAREFA]
             Analise o relato de bug abaixo. Siga estritamente o padrão dos exemplos fornecidos (Mantendo títulos claros, estrutura BDD para critérios de aceitação e adicionando uma 
             seção de "Contexto Técnico" apenas se o relato original trouxer dados como logs, severidade, stack traces ou impactos de negócio).

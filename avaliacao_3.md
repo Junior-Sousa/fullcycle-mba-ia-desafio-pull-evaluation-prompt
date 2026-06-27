@@ -35,37 +35,37 @@ https://github.com/google-gemini/deprecated-generative-ai-python/blob/main/READM
 
   from google.generativeai.caching import CachedContent  # type: ignore[import]
    Avaliando exemplos...
-      [1/15] F1:0.77 Clarity:0.88 Precision:0.87
-      [2/15] F1:0.86 Clarity:0.98 Precision:0.87
-      [3/15] F1:0.71 Clarity:0.86 Precision:0.83
-      [4/15] F1:0.74 Clarity:0.93 Precision:0.93
-      [5/15] F1:0.89 Clarity:1.00 Precision:0.97
-      [6/15] F1:0.85 Clarity:0.93 Precision:0.97
-      [7/15] F1:0.90 Clarity:0.95 Precision:0.93
-      [8/15] F1:0.82 Clarity:1.00 Precision:0.93
-      [9/15] F1:0.80 Clarity:0.93 Precision:0.93
-      [10/15] F1:0.84 Clarity:0.95 Precision:0.90
-      [11/15] F1:0.75 Clarity:0.85 Precision:0.87
-      [12/15] F1:0.73 Clarity:0.98 Precision:0.93
-      [13/15] F1:0.87 Clarity:0.93 Precision:0.97
-      [14/15] F1:0.91 Clarity:0.95 Precision:1.00
-      [15/15] F1:1.00 Clarity:0.95 Precision:0.93
+      [1/15] F1:0.85 Clarity:0.95 Precision:1.00
+      [2/15] F1:0.72 Clarity:0.93 Precision:0.98
+      [3/15] F1:0.67 Clarity:0.90 Precision:0.97
+      [4/15] F1:0.82 Clarity:0.98 Precision:0.90
+      [5/15] F1:0.89 Clarity:0.93 Precision:0.95
+      [6/15] F1:0.81 Clarity:0.90 Precision:0.87
+      [7/15] F1:0.75 Clarity:1.00 Precision:1.00
+      [8/15] F1:0.89 Clarity:1.00 Precision:0.90
+      [9/15] F1:0.73 Clarity:0.78 Precision:0.97
+      [10/15] F1:0.82 Clarity:0.90 Precision:0.92
+      [11/15] F1:0.77 Clarity:0.90 Precision:0.90
+      [12/15] F1:0.82 Clarity:1.00 Precision:0.92
+      [13/15] F1:1.00 Clarity:1.00 Precision:1.00
+      [14/15] F1:0.89 Clarity:0.95 Precision:1.00
+      [15/15] F1:1.00 Clarity:0.98 Precision:1.00
 
 ==================================================
 Prompt: juniorsousa/bug_to_user_story_v2
 ==================================================
 
 Métricas Derivadas:
-  - Helpfulness: 0.93 ✓
-  - Correctness: 0.88 ✓
+  - Helpfulness: 0.95 ✓
+  - Correctness: 0.89 ✓
 
 Métricas Base:
   - F1-Score: 0.83 ✓
   - Clarity: 0.94 ✓
-  - Precision: 0.92 ✓
+  - Precision: 0.95 ✓
 
 --------------------------------------------------
-📊 MÉDIA GERAL: 0.8988
+📊 MÉDIA GERAL: 0.9110
 --------------------------------------------------
 
 ✅ STATUS: APROVADO - Todas as métricas >= 0.8
@@ -79,3 +79,12 @@ Aprovados: 1
 Reprovados: 0
 
 ✅ Todos os prompts atingiram todas as métricas >= 0.8!
+
+✓ Confira os resultados em:
+  https://smith.langchain.com/projects/mba-ia-fullcycle
+
+Próximos passos:
+1. Documente o processo no README.md
+2. Capture screenshots das avaliações
+3. Faça commit e push para o GitHub
+(venv) MacBook-Pro-de-MacBook:fullcycle-mba-ia-desafio-pull-evaluation-prompt macbookpro$ 
