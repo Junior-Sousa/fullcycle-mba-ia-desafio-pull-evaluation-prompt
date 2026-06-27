@@ -35,49 +35,47 @@ https://github.com/google-gemini/deprecated-generative-ai-python/blob/main/READM
 
   from google.generativeai.caching import CachedContent  # type: ignore[import]
    Avaliando exemplos...
-      [1/15] F1:0.54 Clarity:0.95 Precision:1.00
-      [2/15] F1:0.46 Clarity:0.78 Precision:0.90
-      [3/15] F1:0.43 Clarity:0.85 Precision:0.90
-      [4/15] F1:0.70 Clarity:0.98 Precision:0.93
-      [5/15] F1:0.65 Clarity:1.00 Precision:0.97
-      [6/15] F1:0.55 Clarity:0.85 Precision:1.00
-      [7/15] F1:0.82 Clarity:0.98 Precision:0.97
-      [8/15] F1:0.79 Clarity:0.98 Precision:0.93
-      [9/15] F1:0.68 Clarity:0.82 Precision:0.87
-      [10/15] F1:0.82 Clarity:0.98 Precision:0.90
-      [11/15] F1:0.89 Clarity:0.95 Precision:0.93
-      [12/15] F1:0.76 Clarity:0.95 Precision:0.90
-      [13/15] F1:0.95 Clarity:0.98 Precision:0.97
-      [14/15] F1:0.96 Clarity:0.98 Precision:0.97
-      [15/15] F1:1.00 Clarity:1.00 Precision:1.00
+      [1/15] F1:0.85 Clarity:0.95 Precision:1.00
+      [2/15] F1:0.72 Clarity:0.93 Precision:0.98
+      [3/15] F1:0.67 Clarity:0.90 Precision:0.97
+      [4/15] F1:0.82 Clarity:0.98 Precision:0.90
+      [5/15] F1:0.89 Clarity:0.93 Precision:0.95
+      [6/15] F1:0.81 Clarity:0.90 Precision:0.87
+      [7/15] F1:0.75 Clarity:1.00 Precision:1.00
+      [8/15] F1:0.89 Clarity:1.00 Precision:0.90
+      [9/15] F1:0.73 Clarity:0.78 Precision:0.97
+      [10/15] F1:0.82 Clarity:0.90 Precision:0.92
+      [11/15] F1:0.77 Clarity:0.90 Precision:0.90
+      [12/15] F1:0.82 Clarity:1.00 Precision:0.92
+      [13/15] F1:1.00 Clarity:1.00 Precision:1.00
+      [14/15] F1:0.89 Clarity:0.95 Precision:1.00
+      [15/15] F1:1.00 Clarity:0.98 Precision:1.00
 
 ==================================================
 Prompt: juniorsousa/bug_to_user_story_v2
 ==================================================
 
 Métricas Derivadas:
-  - Helpfulness: 0.94 ✓
-  - Correctness: 0.84 ✓
+  - Helpfulness: 0.95 ✓
+  - Correctness: 0.89 ✓
 
 Métricas Base:
-  - F1-Score: 0.73 ✗
+  - F1-Score: 0.83 ✓
   - Clarity: 0.94 ✓
-  - Precision: 0.94 ✓
+  - Precision: 0.95 ✓
 
 --------------------------------------------------
-📊 MÉDIA GERAL: 0.8779
+📊 MÉDIA GERAL: 0.9110
 --------------------------------------------------
 
-❌ STATUS: REPROVADO
-⚠️  Métricas abaixo de 0.8: f1_score
-⚠️  Média atual: 0.8779 | Necessário: 0.8000
+✅ STATUS: APROVADO - Todas as métricas >= 0.8
 
 ==================================================
 RESUMO FINAL
 ==================================================
 
 Prompts avaliados: 1
-Aprovados: 0
-Reprovados: 1
+Aprovados: 1
+Reprovados: 0
 
-⚠️  Alguns prompts não atingiram todas as métricas >= 0.8
+✅ Todos os prompts atingiram todas as métricas >= 0.8!
