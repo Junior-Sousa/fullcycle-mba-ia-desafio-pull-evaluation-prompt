@@ -16,11 +16,28 @@ from dotenv import load_dotenv
 from langchain import hub
 from langchain_core.load import load
 from langchain_core.prompts import ChatPromptTemplate
-from utils import load_yaml, check_env_vars, print_section_header
+from utils import load_yaml, print_section_header
 
 
 load_dotenv()
 
+def _build_chat_prompt(prompt_data: dict) -> ChatPromptTemplate:
+    """
+    Instancia o ChatPromptTemplate bruto usando os dados do YAML.
+    """
+    return ChatPromptTemplate.from_messages([
+        ("system", prompt_data["system_prompt"]),
+        ("human", prompt_data["user_prompt"])
+    ])
+
+def _apply_langsmith_metadata(prompt_template: ChatPromptTemplate, prompt_data: dict) -> ChatPromptTemplate:
+    prompt_template.metadata = {
+        "description": prompt_data.get("description", ""),
+        "techniques_applied": prompt_data.get("techniques_applied", []),
+        "version": str(prompt_data.get("version", "1")),
+        "tags": ["production", "v2", "software-engineering", "bdd"]
+    }
+    return prompt_template
 
 def push_prompt_to_langsmith(prompt_name: str, prompt_data: dict) -> bool:
     """
@@ -39,22 +56,22 @@ def push_prompt_to_langsmith(prompt_name: str, prompt_data: dict) -> bool:
         print("Erro: A variável de ambiente 'USERNAME_LANGSMITH_HUB' não foi definida.")
         return False
 
-    full_prompt_handle = f"{username}/{prompt_name}"
+    prompt_name = f"{username}/{prompt_name}"
 
     try:
-        print(f"Carregando prompt para envio ...")
-        prompt_object = load(prompt_data)
-        print(f"Prompt carregado!")
+        print("Construindo e configurando o prompt dinamicamente...")
+        prompt = _build_chat_prompt(prompt_data)
+        prompt_com_metadata = _apply_langsmith_metadata(prompt, prompt_data)
 
-        print(f"Enviando prompt para o LangSmith Hub como: '{full_prompt_handle}'...")
+        print(f"Enviando prompt para o LangSmith Hub como: '{prompt_name}'...")
         hub.push(
-            full_prompt_handle, 
-            prompt_object, 
+            prompt_name, 
+            prompt_com_metadata,
             new_repo_is_public=True
         )
 
-        print(f"Prompt '{full_prompt_handle}' publicado com sucesso!")
-        print(f"Link para verificação: https://smith.langchain.com/hub/{full_prompt_handle}")
+        print(f"Prompt '{prompt_name}' publicado com sucesso!")
+        print(f"Link para verificação: https://smith.langchain.com/hub/{prompt_name}")
         return True
     except Exception as e:
         print(f"Erro ao fazer push do prompt '{prompt_name}': {e}")
@@ -71,25 +88,14 @@ def validate_prompt(prompt_data: dict) -> tuple[bool, list]:
     Returns:
         (is_valid, errors) - Tupla com status e lista de erros
     """
-    errors = []
+    erros = []
 
-    # 1. Valida se a raiz é do tipo esperado pelo LangChain
-    if prompt_data.get("name") != "ChatPromptTemplate":
-        errors.append("O 'name' raiz deve ser 'ChatPromptTemplate'.")
+    required_fields = ['version', 'description', 'system_prompt', 'user_prompt']
+    for field in required_fields:
+        if field not in prompt_data:
+            errors.append(f"Campo obrigatório faltando: {field}")
 
-    kwargs = prompt_data.get("kwargs", {})
-    root_variables = kwargs.get("input_variables", [])
-    messages = kwargs.get("messages", [])
-
-    # 2. Garante que existem mensagens no template
-    if not messages:
-        errors.append("A lista de 'messages' não pode estar vazia.")
-
-    if "bug_report" not in root_variables:
-        errors.append("A variável 'bug_report' é obrigatória no 'input_variables' da raiz.")
-
-    is_valid = len(errors) == 0
-    return is_valid, errors
+    return len(erros) == 0, erros
 
 
 def main():
