@@ -26,9 +26,28 @@ Para elevar a assertividade e a qualidade das User Stories geradas, o prompt bas
 
 ---
 
-## 📊 Resultados Finais e Avaliação
+## 📊 Resultados Finais
 
 O pipeline de avaliação foi executado utilizando o dataset oficial de 15 exemplos através do LangSmith, superando a meta mínima de **0.8 (80%)** em todas as dimensões de qualidade.
+
+### Screenshots Avaliações
+
+#### Execucão 1 - V1 - Versão Original
+
+![Versao Original](images/execucao-v1.png)
+
+#### Execucão 2 - V2 - Round 1
+
+![V2 - Otimizacao 1](images/execucao-v2-round-1.png)
+
+#### Execucão 3 - V2 - Round 2
+
+![V2 - Otimizacao 2 - Gerou resultado negativo](images/execucao-v2-round-2.png)
+
+#### Execucão 4 - V2 - Round 3
+
+![V2 - Otimizacao 3](images/execucao-v2-round-3.png)
+
 
 ### Tabela Comparativa de Performance
 
@@ -39,9 +58,6 @@ O pipeline de avaliação foi executado utilizando o dataset oficial de 15 exemp
 | **F1-Score** | >= 0.8 | 0.67 | 0.83 | 0.73 | **0.83** | ✅ Aprovado |
 | **Clarity** | >= 0.8 | 0.90 | 0.94 | 0.94 | **0.94** | ✅ Aprovado |
 | **Precision** | >= 0.8 | 0.92 | 0.92 | 0.04 | **0.95** | ✅ Aprovado |
-
-### Evidências do LangSmith
-*.  **Link Prompt Publicado:** [🔗 Clique aqui para acessar o prompt otimizado](https://smith.langchain.com/hub/juniorsousa/bug_to_user_story_v2)
 
 ---
 
@@ -133,3 +149,9 @@ pytest tests/test_prompts.py
 ├── README.md                     # Documentação projeto
 └── requirements.txt              # Dependencias Projeto
 ```
+
+### Evidências do LangSmith
+
+**Link Prompt Publicado:** [🔗 Clique aqui para acessar o prompt otimizado](https://smith.langchain.com/hub/juniorsousa/bug_to_user_story_v2)
+
+**Link Dataset:** [🔗 Clique aqui para acessar o dataset com as execucoes](https://smith.langchain.com/public/d226aa92-1209-4df9-a2e9-4dc2830fc308/d?tab=2)
