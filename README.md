@@ -164,4 +164,6 @@ pytest tests/test_prompts.py
 
 **Link Prompt Publicado:** [🔗 Clique aqui para acessar o prompt otimizado](https://smith.langchain.com/hub/juniorsousa/bug_to_user_story_v2)
 
-**Link Dataset:** [🔗 Clique aqui para acessar o dataset com as execucoes](https://smith.langchain.com/public/d226aa92-1209-4df9-a2e9-4dc2830fc308/d?tab=2)
+**Dashboard LangSmith:**
+
+![Dashboard LangSmith - Junior Sousa](images/dashboard_langsmith.png)
