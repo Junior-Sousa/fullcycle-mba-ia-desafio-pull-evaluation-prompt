@@ -61,6 +61,16 @@ O pipeline de avaliação foi executado utilizando o dataset oficial de 15 exemp
 
 ---
 
+### 📝 Análise Crítica dos Resultados e Relação entre as Métricas
+
+A análise do comportamento do modelo durante as iterações revela como as alterações estruturais do prompt impactaram diretamente o desempenho do LLM-as-a-Judge:
+
+*   **Clarity (Clareza) e Helpfulness (Utilidade):** Ambas as métricas mantiveram-se consistentemente altas desde a `v1` e melhoraram com a introdução da persona (*Role Prompting*) e da estrutura BDD. O modelo sempre gerou respostas fáceis de ler e úteis, culminando em **0.94** de Clareza e **0.95** de Utilidade no Round Final.
+*   **A Relação de Dependência (Correctness, Precision e F1-Score):**
+    *   **O Gargalo Inicial (v1):** O prompt original falhava em assertividade técnica (`Correctness: 0.79` e `F1-Score: 0.67`), pois não delimitava o escopo nem oferecia exemplos.
+    *   **A Anomalia do Round 2:** Durante o segundo round, uma alteração no prompt causou um comportamento inesperado onde a **Precision despencou para 0.04**. Isso significa que o modelo gerou muitas informações irrelevantes ou alucinou severamente no escopo da User Story. Como o *F1-Score* é a média harmônica entre Precision e Recall, ele foi arrastado para baixo (**0.73**), o que causaria a reprovação do prompt neste estágio.
+    *   **A Correção e Sucesso no Round 3:** Ao analisar o *tracing* do LangSmith, o prompt foi ajustado para conter diretrizes estritas de ancoragem nos fatos (evitando que a IA inventasse regras de negócio). O resultado foi a recuperação total da estabilidade: **Precision saltou para 0.95** e o **F1-Score consolidou em 0.83**, superando com folga a meta de 0.8 em absolutamente todos os critérios.
+
 ## 🚀 Como Executar o Projeto
 
 ### Pré-requisitos
