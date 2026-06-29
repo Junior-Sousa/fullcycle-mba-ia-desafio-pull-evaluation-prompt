@@ -57,19 +57,19 @@ O pipeline de avaliação foi executado utilizando o dataset oficial de 15 exemp
 | **Correctness** | >= 0.8 | 0.79 | 0.88 | 0.84 | **0.89** | ✅ Aprovado |
 | **F1-Score** | >= 0.8 | 0.67 | 0.83 | 0.73 | **0.83** | ✅ Aprovado |
 | **Clarity** | >= 0.8 | 0.90 | 0.94 | 0.94 | **0.94** | ✅ Aprovado |
-| **Precision** | >= 0.8 | 0.92 | 0.92 | 0.04 | **0.95** | ✅ Aprovado |
+| **Precision** | >= 0.8 | 0.92 | 0.92 | 0.94 | **0.95** | ✅ Aprovado |
 
 ---
 
 ### 📝 Análise Crítica dos Resultados e Relação entre as Métricas
 
-A análise do comportamento do modelo durante as iterações revela como as alterações estruturais do prompt impactaram diretamente o desempenho do LLM-as-a-Judge:
+A análise do comportamento do modelo ao longo dos rounds revela como a engenharia de prompt refinou a precisão técnica e a aderência das respostas às regras de negócio:
 
-*   **Clarity (Clareza) e Helpfulness (Utilidade):** Ambas as métricas mantiveram-se consistentemente altas desde a `v1` e melhoraram com a introdução da persona (*Role Prompting*) e da estrutura BDD. O modelo sempre gerou respostas fáceis de ler e úteis, culminando em **0.94** de Clareza e **0.95** de Utilidade no Round Final.
-*   **A Relação de Dependência (Correctness, Precision e F1-Score):**
-    *   **O Gargalo Inicial (v1):** O prompt original falhava em assertividade técnica (`Correctness: 0.79` e `F1-Score: 0.67`), pois não delimitava o escopo nem oferecia exemplos.
-    *   **A Anomalia do Round 2:** Durante o segundo round, uma alteração no prompt causou um comportamento inesperado onde a **Precision despencou para 0.04**. Isso significa que o modelo gerou muitas informações irrelevantes ou alucinou severamente no escopo da User Story. Como o *F1-Score* é a média harmônica entre Precision e Recall, ele foi arrastado para baixo (**0.73**), o que causaria a reprovação do prompt neste estágio.
-    *   **A Correção e Sucesso no Round 3:** Ao analisar o *tracing* do LangSmith, o prompt foi ajustado para conter diretrizes estritas de ancoragem nos fatos (evitando que a IA inventasse regras de negócio). O resultado foi a recuperação total da estabilidade: **Precision saltou para 0.95** e o **F1-Score consolidou em 0.83**, superando com folga a meta de 0.8 em absolutamente todos os critérios.
+* **Estabilidade de Escopo (Precision e Helpfulness):** A métrica de **Precision** manteve-se alta e crescente ($\text{v1}: 0.92 \rightarrow \text{Round 3}: 0.95$), o que aponta que o modelo reduziu drasticamente as alucinações, focando estritamente nos fatos fornecidos nos relatos de bug. Essa precisão técnica impulsionou diretamente a utilidade prática das User Stories, refletida na nota máxima de **0.95 em Helpfulness**.
+
+* **O Comportamento do F1-Score no Round 2:** Embora a precisão (`0.94`) e a clareza (`0.94`) estivessem excelentes no Round 2, houve uma oscilação pontual em **Correctness (0.84)** e **F1-Score (0.73)**. Isso indica que, ao tentar tornar o prompt mais restritivo naquele round, o modelo acabou omitindo detalhes importantes que deveriam ter sido mapeados (um problema de *Recall*). Como o F1-Score é o equilíbrio matemático entre a precisão e a completude, ele acusou essa perda de cobertura de cenários.
+
+* **A Convergência de Sucesso (Round 3):** O Round 3 solucionou esse trade-off ao introduzir a técnica de *Skeleton of Thought* combinada com as diretrizes de proporcionalidade. Ao instruir o LLM a analisar a complexidade do bug antes de escrever, garantiu-se que bugs simples recebessem escopos enxutos e bugs complexos contivessem o contexto técnico necessário. A estratégia recuperou a completude do modelo, levando o **Correctness a 0.89** e o **F1-Score estável a 0.83**, superando todas as metas propostas.
 
 ## 🚀 Como Executar o Projeto
 
